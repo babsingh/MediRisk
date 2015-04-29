@@ -1,0 +1,68 @@
+{
+    "patient": {
+        "age": 20,
+        "sunburn": false,
+        "alliumphobia": false,
+        "no_reflection": false,
+        "blood_type": "one" 
+    },
+    "schema": [
+        {   
+            "property": "age", 
+            "label": "Age between 1-1000", 
+            "type": "number",
+            "attr": {
+                "min": 1,
+                "max": 1000,
+                "ngChange": "join()"
+            },
+            "msgs": {
+                "min": "You need a age no less than 1",
+                "max": "You need a age no greater than 1000"
+            },
+            "validate": true
+        },
+        {
+            "property": "blood_type",
+            "label": "Blood Type",
+            "type": "select",
+            "list": "key as value for (key,value) in lookup.bloodtest_types",
+            "attr": {
+                "ngChange": "join()"
+            },
+            "validate": true
+        },
+        {   
+            "property": "sunburn", 
+            "label": "Has Sunburn?", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "alliumphobia", 
+            "label": "Has Alliumphobia?", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "no_reflection", 
+            "label": "Has No Reflection?", 
+            "type": "checkbox",
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        }
+    ],
+
+    "lookup":{
+        "bloodtest_types": {
+            "one": "A",
+            "two": "B",
+            "three": "O",
+            "four":"AB"
+        }
+    },
+
+    "join": "var vampirism; if ($scope.patient['age'] > 150) {vampirism = true;} if ($scope.patient['sunburn'] == true) {vampirism = true;} if ($scope.patient['alliumphobia'] == true) {vampirism = true;} if ($scope.patient['no_reflection'] == true) {vampirism = true;} var type = $scope.patient['blood_type']; if(type=='four'){vampirism = true;} var bloodtest = $scope.patient['bloodtest']; $scope.output_name = ['Are you a vampire?']; if (vampirism) {$scope.output_value = ['Yes'];} else {$scope.output_value = ['No'];}"
+}

@@ -1,0 +1,195 @@
+
+
+    <body style="padding-top: 70px;" ng-controller="MainCtrl as main">
+    <div class="col-md-12">
+      <div class="navbar navbar-default navbar-inverse navbar-fixed-top" style="">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color:white">Medical App</a>
+            <button class="btn btn-sm btn-success navbar-btn visible-xs" type="button"
+            data-toggle="modal" data-target="#modelModal">
+              <span class="glyphicon glyphicon glyphicon-plus"></span>Change Displayed Models</button>
+          </div>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="hidden-lg hidden-md inactive visible-sm visible-xs">
+              <button class="btn btn-sm btn-success hidden-xs navbar-btn visible-lg visible-md visible-sm" data-toggle="modal" data-target="#modelModal"
+              type="button">
+                <span class="glyphicon glyphicon glyphicon-plus"></span>Change Displayed Models</button>
+            </li>
+          </ul>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="inactive">
+                <a data-toggle="modal" data-target="#legalModal">Legal<br></a>
+              </li>
+              <li class="inactive">
+                <a data-toggle="modal" data-target="#instructionsModal">Instructions</a>
+              </li>
+              <li class="inactive">
+                <a data-toggle="modal" data-target="#settingsModal">Settings</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-dismissable alert-success" style="">
+              <button contenteditable="false" type="button" class="close" data-dismiss="alert">x</button>{{message}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 hidden-sm hidden-xs visible-lg visible-md">
+            <h4>Currently displayed models ({{shown_models.length}}/{{model_limit}})</h4>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="i in shown_models track by $index">
+                <div ng-click="removeModel($index)">
+                    {{models[shown_models[$index]].name}} (click to remove this)
+                </div>
+              </a>
+            </ul>
+            <hr>
+            <h4>Add more models</h4>
+            <input class="form-control" placeholder="Search" style="margin:0px 0px 10px 0px"
+            type="text" ng-model="searchbar"/>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="model in models| filter:searchbar">
+                <div ng-click="addModel($index)">
+                    {{model.name}}(click to add this)
+                </div>
+              </a>
+            </ul>
+          </div>
+          <div class="col-md-9 col-sm-12">
+            <div class="panel panel-default" ng-repeat="i in shown_models track by $index">
+              <div class="panel-heading">
+                <h1 class="panel-title text-center">{{models[shown_models[$index]].name}}</h1>
+              </div>
+              <div class="panel-body">
+                <form name="joinForm" ng-submit="join(shown_models[$index])">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <h2 contenteditable="true">Inputs</h2>
+                        <hr>
+                            <auto:fields fields="schemas[shown_models[$index]]" data="patients[shown_models[$index]]"></auto:fields>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <hr class="hidden-lg hidden-md hidden-sm">
+                        <h2>Outputs</h2>
+                        <hr>
+                        <div class="col-md-12" ng-repeat="output in output_names[shown_models[$index]]">
+                            <h5>{{output}}</h5>
+                            <h4>{{output_values[shown_models[$parent.$index]][$index]}}</h4>
+                            <hr>
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-lg btn-block" ng-class="{'btn-custom':joinForm.$valid}">Join</button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    
+    <!-- more models modal -->
+    <div class="modal fade" id="modelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal selection</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Currently displayed models ({{shown_models.length}}/{{model_limit}})</h4>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="i in shown_models track by $index">
+                <div ng-click="removeModel($index)">
+                    {{models[shown_models[$index]].name}} (click to remove this)
+                </div>
+              </a>
+            </ul>
+            <hr>
+            <h4>Add more models</h4>
+            <input class="form-control" placeholder="Search" style="margin:0px 0px 10px 0px"
+            type="text" ng-model="searchbar"/>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="model in models| filter:searchbar">
+                <div ng-click="addModel($index)">
+                    {{model.name}}(click to add this)
+                </div>
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- legal modal -->
+    <div class="modal fade" id="legalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Legal info</h4>
+          </div>
+          <div class="modal-body" style="height:70vh;overflow:auto;">
+            Legal information goes here. if there is too much this will become a scrollbox
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- instructions modal -->
+    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Instructions</h4>
+          </div>
+          <div class="modal-body" style="height:70vh;overflow:auto;">
+            Instruction information goes here. if there is too much this will become a scrollbox
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- settings modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal selection</h4>
+          </div>
+          <div class="modal-body">
+            place to put settings info
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

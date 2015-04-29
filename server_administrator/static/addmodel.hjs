@@ -1,0 +1,33 @@
+<h2 style="text-align:center"><b>Adding Model: {{model_name }}</b></h2>
+<br>
+
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-primary btn-block" ng-click="orightml = setupAddModel()">Base Model</button>
+    <br>
+    <h3>Raw Config File</h3>
+    <label for="sel1">Select data-type:</label>
+    <select class="form-control" ng-model="seltype" ng-init="seltype='data'" ng-options="sel for sel in seltypes1" ng-change="orightml = selectData(seltype)">
+    </select>
+    <textarea class="form-control" rows="15" ng-model="orightml" ng-init="orightml = selectData(seltype)" ng-change="changeModel(orightml)" style="width: 100%"></textarea>
+    <br>
+    <label for="model_name">Model Name:</label>
+    <input type="text" class="form-control" name="model_name" ng-model="model_name" ng-change="updateModelName(model_name)" placeholder="Enter model name">
+    <br>
+    <label for="model_desc">Model Description:</label>
+    <textarea class="form-control" rows="4" name="model_desc" ng-model="model_desc" ng-change="updateDesc(model_desc)" placeholder="Enter model description"></textarea>
+    <br>
+  </div>
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-primary btn-block" ng-click="addModel()">Add Model</button>
+    <br>
+    <br>
+    <form name="joinForm" ng-submit="join()">
+      <div ng-include="content_model1"></div>
+    </form>
+  </div>
+</div>

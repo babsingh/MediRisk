@@ -1,0 +1,71 @@
+.slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.slide.ng-enter,
+.slide.ng-leave {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.slide.slide-back.ng-enter {
+    left: -100%;
+}
+.slide.slide-back.ng-enter-active {
+    left: 0;
+}
+.slide.slide-back.ng-leave {
+    left: 0;
+}
+.slide.slide-back.ng-leave-active {
+    left: 100%;
+}
+.slide.slide-next.ng-enter {
+    left: 100%;
+}
+.slide.slide-next.ng-enter-active {
+    left: 0;
+}
+.slide.slide-next.ng-leave {
+    left: 0;
+}
+.slide.slide-next.ng-leave-active {
+    left: -100%;
+}
+
+.glyphicon {
+    color: #B6B6B4;
+    font-size: 20px;
+}
+
+.navbar {
+    background-color: #0C090A;
+    border-color: #B6B6B4;
+}
+
+.navbar-header {
+    float: center;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    font-size: 24px;
+    float:none;
+    color: #B6B6B4 !important;
+}
+
+.btn-manage {
+  float: left;
+  padding: 0px;
+  outline: none !important;
+  background: none !important;
+}
+
+.patient {
+  background-color : #d1d1d1; 
+}

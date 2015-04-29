@@ -1,0 +1,81 @@
+<div class="container" style="margin:10px auto;">
+  <h2>Welcome, {{ user.fullname }}</h2>
+  <br>
+
+  <div class="row">
+      <div class="col-md-3">
+          <label>Choose a Start Date: </label>
+          <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="dtStart" placeholder="2015/02/15" is-open="opened1" min-date="2009-06-15" max-date="maxDate" ng-required="true" ng-click="opened1 = true" close-text="Close" />
+      </div>
+      <div class="col-md-3">
+          <label>Choose a End Date: </label>
+          <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="dtEnd" placeholder="2015/03/15" is-open="opened2" min-date="2009-06-15" max-date="maxDate" ng-required="true" ng-click="opened2 = true" close-text="Close" />
+      </div>
+      <div class="col-md-3">
+          <label>Enter Maximum Models: </label>
+          <input type="number" class="form-control" min="1" max="100" name="maxsi" ng-init="maxsi=5" ng-model="maxsi" placeholder="(1-100)" required>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary btn-block" ng-click="queryIdeas(dtStart, dtEnd, maxsi)">Query Models</button>
+        <button class="btn btn-primary btn-block" ng-click="resetIdeas()">Reset Models</button>
+      </div>
+  </div>
+</div>
+
+<div class="container" style="margin:10px auto;">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <p><label>Smart Search: </label>
+        <input type="text" class="form-control" name="keyword" ng-model="keyword" placeholder="Enter Keyword"></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div ng-model="ideas">
+    <h3>Select to Edit Models: </h3>
+    <br>
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
+            Name <span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="orderByField='desc'; reverseSort = !reverseSort">
+            Description <span ng-show="orderByField == 'desc'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="orderByField='author'; reverseSort = !reverseSort">
+            Author <span ng-show="orderByField == 'author'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="orderByField='timestamp'; reverseSort = !reverseSort">
+            Date Added <span ng-show="orderByField == 'timestamp'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="orderByField='Downloads'; reverseSort = !reverseSort">
+            Downloads <span ng-show="orderByField == 'Downloads'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="model in modelsfil | orderBy:orderByField:reverseSort | limitTo:maxshow | filter:keyword" ng-click="setSelected();">
+          <td>{{ model.name }}</td>
+          <td>{{ model.desc }}</td>
+          <td>{{ model.author }}</td>
+          <td>{{ model.timestamp | date:"yyyy/MM/dd 'at' h:mma"}}</td>
+          <td>{{ model.downloads }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

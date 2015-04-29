@@ -1,0 +1,4 @@
+<button class="btn btn-success btn-block" ng-click="setContentModel1('load_model1.hjs')">Go Back</button>
+<br><br>
+<div id="placeholder" ng-init="plot_data()" style="height:480px;"></div>
+<div id="legend" style="width: 200px; height: 200px;"></div>

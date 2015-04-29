@@ -1,0 +1,111 @@
+{
+    "patient": {
+        "age": 50,
+        "probability": 20,
+        "bloodtest": 3000,
+        "bloodtest_type": "one",
+        "platform_type": "one"
+    },
+    "schema": [
+        {
+            "property": "age",
+            "label": "Age in years (1-150)",
+            "type": "number",
+            "attr": {
+                "min": 1,
+                "max": 150,
+                "ngChange": "join()"
+            },
+            "msgs": {
+                "min": "You need a age no less than 1",
+                "max": "You need a age no greater than 150"
+            },
+            "validate": true
+        },
+        {
+            "property": "probability",
+            "label": "Probability (0-100)",
+            "type": "number",
+            "step": "any",
+            "attr": {
+                "min": 0,
+                "max": 100,
+                "ngChange": "join()"
+            },
+            "msgs": {
+                "min": "You need a probability no less than 0",
+                "max": "You need a probability no greater than 100"
+            },
+            "validate": true
+        },
+        {
+            "property": "bloodtest",
+            "label": "NT-proBNP test result (0-40000)",
+            "type": "number",
+            "attr": {
+                "min": 0,
+                "max": 40000,
+                "ngChange": "join()"
+            },
+            "msgs": {
+                "min": "You need a number no less than 0",
+                "max": "You need a number no greater than 40000"
+            },
+            "validate": true
+        },
+        {
+            "property": "bloodtest_type",
+            "label": "NT-proBNP unit",
+            "type": "select",
+            "list": "key as value for (key,value) in lookup.bloodtest_types",
+            "attr": {
+                "ngChange": "join()"
+            },
+            "validate": true
+        },
+        {
+            "property": "platform_type",
+            "label": "Platform Type",
+            "type": "select",
+            "list": "key as value for (key,value) in lookup.platform_types",
+            "attr": {
+                "ngChange": "join()"
+            },
+            "validate": true
+        }
+    ],
+
+    "lookup":{
+        "likelihood":[
+            {
+                "index": 73.5, "+LR":">15.12", "-LR":"0.52", "msg":"[placeholder]"
+            },
+            {
+                "index": 65, "+LR":">10", "-LR":"0.34", "msg":"[placeholder]"
+            },
+            {
+                "index": 47, "+LR":"2.05", "-LR":"0.86", "msg":"[placeholder]"
+            },
+            {
+                "index": 32.5, "+LR":"<0.1", "-LR":"5.31", "msg":"[placeholder]"
+            },
+            {
+                "index": 0, "+LR":"<0.01", "-LR":"3.06", "msg":"[placeholder]"
+            }
+        ],
+
+        "bloodtest_types": {
+            "one": "pg/mL or ng/L",
+            "two": "pmol/L"
+        },
+
+        "platform_types": {
+            "one": "Roche",
+            "two": "Siemens"
+        },
+
+        "plotOutput": "var age = $scope.patient['age'];var bloodtest = $scope.patient['bloodtest']; var type = $scope.patient['bloodtest_type']; if (type == 'two') { bloodtest = bloodtest*8.457; } var temp = (8 + (0.011*age) - (5.9*probability*0.01) - (2.3*(Math.log(bloodtest)/Math.LN10)) + (0.82*probability*0.01*(Math.log(bloodtest)/Math.LN10)));var result = (Math.pow((1 + Math.pow(Math.E, temp)), -1)*100);var output = 'Post-Test Probability=' + result.toFixed(2) + '%'; return result.toFixed(2);"
+    },
+
+    "join": "var age = $scope.patient['age'];var probability = $scope.patient['probability']; var type = $scope.patient['bloodtest_type']; var platformType = $scope.patient['platform_type']; var bloodtest = $scope.patient['bloodtest']; if (type == 'two') { bloodtest = bloodtest*8.457; } if (platformType == 'two') { bloodtest = ((0.821 * bloodtest) + 268.1); } var temp = (8 + (0.011*age) - (5.9*probability*0.01) - (2.3*(Math.log(bloodtest)/Math.LN10)) + (0.82*probability*0.01*(Math.log(bloodtest)/Math.LN10)));var result = (Math.pow((1 + Math.pow(Math.E, temp)), -1)*100);var output = 'Post-Test Probability=' + result.toFixed(2) + '%'; var output1 = '(Highly supportive for AHF Dx)'; var output2 = '(Highly supportive against AHF Dx)'; var lr = $scope.bracket(result, $scope.lookup['likelihood']); if(parseFloat(lr['+LR']) < 10) {output1 = '(Indeterminate for AHF)';} if(parseFloat(lr['-LR']) > 0.1) {output2 = '(Indeterminate for AHF)';} $scope.output_name = ['Post-Test Probability', 'LR+', 'LR-']; $scope.output_value = [result.toFixed(2), lr['+LR'] + ' ' + output1, lr['-LR'] + ' ' + output2];"
+}

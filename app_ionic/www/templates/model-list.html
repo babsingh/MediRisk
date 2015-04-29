@@ -1,0 +1,27 @@
+<ion-view title="Select Model">
+
+    <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+            <input id="searchKey" type="search" placeholder="Search" ng-model="searchKey" autocorrect="off" >
+            <!--button class="button button-clear" ng-click="clearSearch()">X</button-->
+        </label>
+    </div>
+
+    <ion-content class="has-header has-subheader">
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list>
+            <ion-item ng-repeat="model in models | filter: searchKey" type="item-text-wrap" class="item-avatar item-icon-right" href="#/load/{{model.position}}">
+                <img ng-src="{{model.logo}}"/>
+                {{model.name}}
+                <i class="icon ion-chevron-right"></i>
+                <p>{{model.desc}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+</ion-view>

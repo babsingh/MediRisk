@@ -1,0 +1,71 @@
+{
+    "patient": {
+        "age": false,
+        "heart_rate": false,
+        "o2_stat": false,
+        "ven_thromb": false,
+        "traum_sur": false,
+        "hemoptysis": false,
+        "exo_estrogen": false,
+        "uni_leg_swell": false
+    },
+    "schema": [
+        {   
+            "property": "age", 
+            "label": "Age ≥ 50", 
+            "type": "checkbox",
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "heart_rate", 
+            "label": "HR ≥ 100", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "o2_stat", 
+            "label": "O2 Sat on Room Air < 95%", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "ven_thromb", 
+            "label": "Prior History of Venous Thromboembolism", 
+            "type": "checkbox",
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "traum_sur", 
+            "label": "Trauma or Surgery within 4 weeks", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "hemoptysis", 
+            "label": "Hemoptysis", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "exo_estrogen", 
+            "label": "Exogenous Estrogen", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "uni_leg_swell", 
+            "label": "Unilateral Leg Swelling", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        }
+    ],
+    "join": "var points = 0; var message = ''; if ($scope.patient['age'] == true) {points += 1;} if ($scope.patient['heart_rate'] == true) {points += 1;} if ($scope.patient['o2_stat'] == true) {points += 1;} if ($scope.patient['ven_thromb'] == true) {points += 1;} if ($scope.patient['traum_sur'] == true) {points += 1;} if ($scope.patient['hemoptysis'] == true) {points += 1;} if ($scope.patient['exo_estrogen'] == true) {points += 1;} if ($scope.patient['uni_leg_swell'] == true) {points += 1;} if (points == 0) { message = 'No need for further workup, as <2% chance of PE. Only valid when clinician\\'s pre-test probability is <15%.'} if (points > 0)  { message = 'If any criteria are positive, the PERC rule does not rule out PE in this patient. Perform a D-Dimer test';} $scope.output_name = ['Message']; $scope.output_value = [message];"
+}

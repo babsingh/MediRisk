@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="btn btn-manage" ng-click="back()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+      <a style="margin: 0 1em" class="navbar-brand"><b>Select Model</b></a>
+    </div>
+  </div>
+</nav>
+<!--div class="container"-->
+  <div class="list-group">
+    <a href="#/render/{{model.id}}" class="list-group-item" ng-repeat="model in models" ng-click="next()">
+      <h4 class="list-group-item-heading">{{model.name}}</h4>
+      <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+      <span class="badge pull-right">{{model.id + 1}}</span>
+      <p class="list-group-item-text">{{model.desc}}</p>
+    </a>
+  </div>
+<!--/div-->

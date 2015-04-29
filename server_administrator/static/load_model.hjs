@@ -1,0 +1,20 @@
+<div class="row responsive-sm">
+  <div class="col">
+    <h3><b>Inputs</b></h3>
+    <hr>
+        <auto:fields fields="schema" data="patient" options="options"></auto:fields>
+  </div>
+  <div class="col">
+    <h3><b>Outputs</b></h3>
+    <hr>
+    <div class="col" ng-repeat="output in output_name track by $index">
+        <h4><b>{{output}}</b></h4>
+        <h4>
+            {{output_value[$index]}}
+        </h4>
+        <hr>
+    </div>
+    <!--button class="btn btn-success btn-block" ng-click="setContentModel()" ng-show="perc_rule">Go to PERC Rule</button-->
+    <button class="btn btn-success btn-block" ng-click="setContentModel('plot.hjs')" ng-show="hasPlot">Plot</button>
+  </div>
+</div>

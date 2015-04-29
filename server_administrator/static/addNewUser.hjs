@@ -1,0 +1,21 @@
+<div class="container" style="height:300px; width:600px; margin:10px auto; border: 1px solid #888; border-radius:10px;">
+  <div class="col-sm-10 col-md-10 col-md-offset-1">
+    <br>
+    <h2 style="text-align:center">New Admin Interface</h2>
+    <br>
+    <div class="form-container">
+      <form method="POST" action="/send/authkey">
+        <div class="form-group">
+            <label for="newadminemail">Enter New Admin's Email</label>
+            <div class="input-group">
+                <input type="email" class="form-control" name="newadminemail" ng-model="newadminemail" placeholder="Enter New Admin's Email">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Send Authentication Key</button>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

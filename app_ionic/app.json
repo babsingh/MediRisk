@@ -1,0 +1,7 @@
+{
+    "name": "MedAnalysis",
+    "description": "Sample App with Ionic and Node.js",
+    "repository": "",
+    "logo": "",
+    "keywords": ["node", "express", "ionic", "medical"]
+}

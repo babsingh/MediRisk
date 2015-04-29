@@ -1,0 +1,31 @@
+SSH into AWS Server:
+
+1) Starting the server:
+cd ~/ws1/admin_interface/
+forever -o out-forever.log -e err-forever.log start server.js
+
+2) Stopping the server:
+cd ~/ws1/admin_interface/
+forever stop server.js
+
+3) Restarting the server:
+cd ~/ws1/admin_interface/
+forever restart server.js
+
+Useful routes:
+
+1) Get all models - '/models/get'
+Returns a JSON object with the following fields for each model:
+idref: String,
+name: String,
+desc: String,
+src: Object,
+timestamp: Date,
+author: String,
+logo: String,
+downloads: Number
+
+2) Get model by name - '/models/get/name/:id'
+Replace :id with SOB-HF model name
+Returns JSON object for the specified model
+

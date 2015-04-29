@@ -1,0 +1,37 @@
+<div class="container" style="height:525px; width:600px; margin:10px auto; border: 1px solid #888; border-radius:10px;">
+  <div class="col-sm-10 col-md-10 col-md-offset-1">
+    <br>
+    <h2 style="text-align:center">Edit your Profile</h2>
+    <br>
+    <div class="form-container">
+      <form method="POST" action="/profile/update">
+        <div class="form-group">
+            <label for="username">Enter Username/Email</label>
+            <div class="input-group">
+                <input type="email" class="form-control" name="username" ng-model="user.username" placeholder="Enter Username/Email">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fullname">Enter Full Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" name="fullname" ng-model="user.fullname" placeholder="Enter Full Name">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Enter New Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" name="password" placeholder="Enter New Password">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile</button>
+        <br>
+      </form>
+    </div>
+    <form method="POST" action="/profile/delete">
+      <button class="btn btn-lg btn-danger btn-block" type="submit">Delete Account</button>
+    </form>
+  </div>
+</div>

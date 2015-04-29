@@ -1,0 +1,129 @@
+{
+    "patient": {
+        "corn_bypass": false,
+        "vasc_disease": false,
+        "intubation": false,
+        "heart_rate": false,
+        "walk_test": false,
+        "ecg": false,
+        "pulmonary": false,
+        "hemo": false,
+        "urea": false,
+        "serum": false
+    },
+    "schema": [
+        {   
+            "property": "corn_bypass", 
+            "label": "Coronary bypass graft ", 
+            "type": "checkbox",
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "vasc_disease", 
+            "label": "Peripheral vascular disease intervention", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "intubation", 
+            "label": "Intubation for respiratory distress", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "heart_rate", 
+            "label": "Heart rate on arrival in ED ≥ 110/min", 
+            "type": "checkbox",
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "walk_test", 
+            "label": "Too ill to do walk test after treatment in ED (SaO2 < 90% or heart rate ≥ 120/min)", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "ecg", 
+            "label": "Acute ischemic changes on ECG", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "pulmonary", 
+            "label": "Pulmonary congestion evident on chest radiography", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "hemo", 
+            "label": "Hemoglobin < 100 g/L", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "urea", 
+            "label": "Urea ≥ 12 mmol/L", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        },
+        {   
+            "property": "serum", 
+            "label": "Serum CO2 ≥ 35 mmol/L", 
+            "type": "checkbox", 
+            "validate": false,
+            "attr": {"ngChange": "join()"}
+        }
+    ],
+
+    "lookup":{
+        "adverse_event":[
+            {
+                "index": 11, "event":"N/A", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 10, "event":"91.4", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 9, "event":"N/A", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 8, "event":"75.6", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 7, "event":"62.6", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 6, "event":"47.5", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 5, "event":"32.9", "risk":"Very High", "msg":"[placeholder]"
+            },
+            {
+                "index": 4, "event":"20.9", "risk":"High", "msg":"[placeholder]"
+            },
+            {
+                "index": 3, "event":"12.5", "risk":"High", "msg":"[placeholder]"
+            },
+            {
+                "index": 2, "event":"7.2", "risk":"Medium", "msg":"[placeholder]"
+            },
+            {
+                "index": 1, "event":"4.0", "risk":"Medium", "msg":"[placeholder]"
+            },
+            {
+                "index": 0, "event":"2.2", "risk":"Low", "msg":"[placeholder]"
+            }
+        ]
+    },
+
+    "join": "var points = 0; if ($scope.patient['corn_bypass'] == true) {points += 1;} if ($scope.patient['vasc_disease'] == true) {points += 1;} if ($scope.patient['intubation'] == true) {points += 2;} if ($scope.patient['heart_rate'] == true) {points += 2;} if ($scope.patient['walk_test'] == true) {points += 2;} if ($scope.patient['ecg'] == true) {points += 2;} if ($scope.patient['pulmonary'] == true) {points += 1;} if ($scope.patient['hemo'] == true) {points += 3;} if ($scope.patient['urea'] == true) {points += 1;} if ($scope.patient['serum'] == true) {points += 1;} $scope.output_name = ['Points', 'Adverse event (%)', 'Risk Category']; var rk = $scope.bracket(points, $scope.lookup['adverse_event']); $scope.output_value = [points, rk['event'], rk['risk']];"
+}

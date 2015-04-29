@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="btn btn-manage" ng-click="back()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+      <a style="margin: 0 1em" class="navbar-brand"><b>Manage Models</b></a>
+    </div>
+  </div>
+</nav>
+<div class="list-group">
+  <a class="list-group-item next" ng-repeat="model in models">
+	<div class="row">
+		<div class="col-xs-6">
+			<h4 class="list-group-item-heading">{{model.name}}</h4>
+    		<p class="list-group-item-text">{{model.desc}}</p>
+		</div>
+		<div class="col-xs-6">
+			<button type="button" class="btn btn-manage pull-right">
+			  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-manage pull-right">
+			  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+  </a>
+</div>

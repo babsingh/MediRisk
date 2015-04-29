@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css' />
+  </head>
+  <body>
+    <div class="container" style="width:600px; margin:25px auto; border: 1px solid #888; border-radius:10px;">
+      <div class="col-sm-8 col-md-8 col-md-offset-2">
+        <h2 style="text-align:center">Register for Medi-Risk Admin Interface!</h2>
+        <br>
+        <div class="row">
+            <form role="form" method="POST" action="/signup">
+                <div class="form-group">
+                    <label for="fullname">Enter Full Name</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="fullname" placeholder="Enter Full Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Enter Email</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" name="username" placeholder="Enter Email" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Enter Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="authkey">Enter Authentication Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="authkey" placeholder="Enter Authentication Key" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            </form>
+            <hr><% msg %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
